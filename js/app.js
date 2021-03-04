@@ -9,7 +9,20 @@
   }*/
 let USERS = JSON.parse(DATA)
 const chatListEl = document.getElementById('chatList')
-const infoChat = document.getElementById('infoChat')
+const infoChatEl = document.getElementById('infoChat')
+const massegeEl = document.getElementById('massege')
+const dontReadMassegeEl = document.getElementById('dontReadMassege')
+
+
+allMassege(USERS, massegeEl)
+function allMassege(obj, insert) {
+  numberOfMessages = 0
+  let numberOfMessages = Object.keys(obj).length
+  insert.insertAdjacentHTML(numberOfMessages)
+}
+
+
+
 
 
 const dateFormatter = new Intl.DateTimeFormat()
@@ -17,19 +30,6 @@ const timeFormatter = new Intl.DateTimeFormat(undefined, {
   hour: '2-digit',
   minute: '2-digit'
 })
-
-
-function createInfoChat(){
-  return `<div class="d-flex"> 
-  <button><i class="fas fa-sync-alt"></i></button>
-  <p>Повідомлень</p>
-  <p>Непрочитаних</p>
-</div>`
- infoChat.insertAdjacentHTML('beforeend')
-}
-function renderInfo(){
-
-}
 
 
 
