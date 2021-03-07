@@ -1,3 +1,11 @@
+body {
+  
+    background: rgb(56, 53, 53);
+    background-size: cover;
+    color: antiquewhite;
+    font-weight: 500;
+
+}
 h1 {
   font-size: 25px;
 }
@@ -7,7 +15,7 @@ a {
 }
 
 .chatItems {
-  border: 1px solid #333;
+  border: 1px solid rgb(255, 255, 255);
   border-radius: 5px;
   transition: 0.4s ease;
 }
@@ -20,7 +28,7 @@ a {
   height: 50px;
 }
 .textMassage {
-  color: rgb(10, 45, 161);
+  color: rgb(255, 255, 255);
 }
 
 .chatItems {

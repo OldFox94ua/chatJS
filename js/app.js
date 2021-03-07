@@ -14,14 +14,15 @@ const massegeEl = document.getElementById('massege')
 const dontReadMassegeEl = document.getElementById('dontReadMassege')
 
 
-allMassege(USERS, massegeEl)
+/*allMassege(allMassegs, massegeEl)
 function allMassege(obj, insert) {
   numberOfMessages = 0
   let numberOfMessages = Object.keys(obj).length
   insert.insertAdjacentHTML(numberOfMessages)
-}
+}*/
 
-
+let massegeAll = USERS.length
+massegeEl.innerHTML = massegeAll
 
 
 
@@ -46,7 +47,7 @@ function renderChat(dataArray, DOMelement) {
 
 function createChat(data) {
   return `
-  <div class="chatItems mb-1" style="max-width: 100% ">
+  <div class="chatItems mb-1" style="max-width: 100%">
   <div class="row">
     <div class="col-1">
       <img  src="${data.avatar}" class="chatImg" width="1" height="1" loading="lazy" alt="logo">
