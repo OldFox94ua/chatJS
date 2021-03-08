@@ -10,7 +10,7 @@
 let USERS = JSON.parse(DATA)
 const chatListEl = document.getElementById('chatList')
 const infoChatEl = document.getElementById('infoChat')
-const massegeEl = document.getElementById('massege')
+const massegeEl = document.getElementById('massage')
 const dontReadMassegeEl = document.getElementById('dontReadMassege')
 const refreshBtn = document.getElementById('refreshBtn')
 
@@ -23,12 +23,22 @@ function allMassege(obj, insert) {
 
 
 //refresh button
-refreshBtn.addEventListener('click', ()=> {
+refreshBtn.addEventListener('click', () => {
   window.location.reload()
 })
 
 
+//all masseges calc
+function lenghtMasseges(mass, renderPlace){
+lenghtArrayMassegs = mass.length
+renderPlace.insertAdjacentHTML('beforeEnd', lenghtArrayMassegs )
+}
+lenghtMasseges(USERS, massegeEl)
 
+//dont read calc
+let dontReadArray = USERS['seen'].prototype.filter() 
+lenghtMasseges(dontReadArray, dontReadMassegeEl)
+console.log(Object.keys(Object.keys(USERS)))
 
 //render date in masseges
 const dateFormatter = new Intl.DateTimeFormat()
@@ -36,7 +46,6 @@ const timeFormatter = new Intl.DateTimeFormat(undefined, {
   hour: '2-digit',
   minute: '2-digit'
 })
-
 
 
 
@@ -53,7 +62,7 @@ function renderChat(dataArray, DOMelement) {
 function createChat(data) {
   return `
   <div class="chatItems mb-1" style="max-width: 100%">
-  <div class="row">
+  <div class="row" >
     <div class="col-1">
       <img  src="${data.avatar}" class="chatImg" width="1" height="1" loading="lazy" alt="logo">
     </div>
@@ -92,8 +101,8 @@ function getTimeStr(dateObj = new Date()) {
 }
  
 /*sort masseges
- function sortSelectEl() {
-  let [key, type] = this.value.split('-')
+ function sortMasseges() {
+  let [key, type] = this.seen
   if (type == 'ab') {
     USERS.sort((a, b) => {
       if (typeof a[key] === 'string') {
@@ -111,14 +120,19 @@ function getTimeStr(dateObj = new Date()) {
       }
     })
   }
-  renderChat(USERS, cardListEl, true)
+  renderChat(USERS, massegeEl)
+}*/
+ 
+function sortMasseges() {
+
+ 
 }
- */
-function 
 
 
-
-
+USERS.sort((a,b)=> {
+  return  a.date - b.date
+}) 
+renderChat(USERS, chatListEl)
 
 
 
