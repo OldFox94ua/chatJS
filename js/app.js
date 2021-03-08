@@ -91,6 +91,38 @@ function getTimeStr(dateObj = new Date()) {
   return `${date} ${time}`
 }
  
+/*sort masseges
+ function sortSelectEl() {
+  let [key, type] = this.value.split('-')
+  if (type == 'ab') {
+    USERS.sort((a, b) => {
+      if (typeof a[key] === 'string') {
+        return a[key].localeCompare(b[key])
+      } else if (typeof a[key] === 'number' || typeof a[key] === 'boolean') {
+        return a[key] - b[key]
+      }
+    })
+  } else if (type == 'ba') {
+    USERS.sort((a, b) => {
+      if (typeof b[key] === 'string') {
+        return b[key].localeCompare(a[key])
+      } else if (typeof b[key] === 'number' || typeof b[key] === 'boolean') {
+        return b[key] - a[key]
+      }
+    })
+  }
+  renderChat(USERS, cardListEl, true)
+}
+ */
+function 
+
+
+
+
+
+
+
+
 
 
 
