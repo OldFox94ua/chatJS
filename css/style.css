@@ -13,14 +13,21 @@ a {
   text-decoration: none;
   color: inherit;
 }
-
+.infoBlock{
+  display: flex;
+  align-items: center;
+}
+.infoBlock p{
+  margin: 0;
+}
 .refresh{
-  padding: 7px;
+  padding: 5px;
   cursor: pointer;
+  margin-right: 10px;
 }
 
 .refresh:hover{
-  animation: rotate 2s linear infinite;
+  animation: rotate 1s linear infinite;
   color: inherit;
 }
 @keyframes rotate {

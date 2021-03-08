@@ -30,15 +30,18 @@ refreshBtn.addEventListener('click', () => {
 
 //all masseges calc
 function lenghtMasseges(mass, renderPlace){
-lenghtArrayMassegs = mass.length
-renderPlace.insertAdjacentHTML('beforeEnd', lenghtArrayMassegs )
+  let lenghtArrayMassegs = mass.length
+  renderPlace.insertAdjacentHTML('beforeEnd', lenghtArrayMassegs )
 }
 lenghtMasseges(USERS, massegeEl)
 
-//dont read calc
+
+
+/*dont read calc (можна юзати MAP)
 let dontReadArray = USERS['seen'].prototype.filter() 
 lenghtMasseges(dontReadArray, dontReadMassegeEl)
-console.log(Object.keys(Object.keys(USERS)))
+console.log(Object.keys(Object.keys(USERS)))*/
+ 
 
 //render date in masseges
 const dateFormatter = new Intl.DateTimeFormat()
@@ -62,7 +65,7 @@ function renderChat(dataArray, DOMelement) {
 function createChat(data) {
   return `
   <div class="chatItems mb-1" style="max-width: 100%">
-  <div class="row" >
+  <div class="row">
     <div class="col-1">
       <img  src="${data.avatar}" class="chatImg" width="1" height="1" loading="lazy" alt="logo">
     </div>
