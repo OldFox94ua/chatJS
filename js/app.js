@@ -12,7 +12,7 @@ const chatListEl = document.getElementById('chatList')
 const infoChatEl = document.getElementById('infoChat')
 const massegeEl = document.getElementById('massege')
 const dontReadMassegeEl = document.getElementById('dontReadMassege')
-
+const refreshBtn = document.getElementById('refreshBtn')
 
 /*allMassege(allMassegs, massegeEl)
 function allMassege(obj, insert) {
@@ -21,11 +21,16 @@ function allMassege(obj, insert) {
   insert.insertAdjacentHTML(numberOfMessages)
 }*/
 
-let massegeAll = USERS.length
-massegeEl.innerHTML = massegeAll
+
+//refresh button
+refreshBtn.addEventListener('click', ()=> {
+  window.location.reload()
+})
 
 
 
+
+//render date in masseges
 const dateFormatter = new Intl.DateTimeFormat()
 const timeFormatter = new Intl.DateTimeFormat(undefined, {
   hour: '2-digit',
