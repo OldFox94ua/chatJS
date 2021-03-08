@@ -37,10 +37,10 @@ lenghtMasseges(USERS, massegeEl)
 
 
 
-/*dont read calc (можна юзати MAP)
-let dontReadArray = USERS['seen'].prototype.filter() 
-lenghtMasseges(dontReadArray, dontReadMassegeEl)
-console.log(Object.keys(Object.keys(USERS)))*/
+//dont read calc (можна юзати MAP)
+//let dontReadArray = USERS['seen'].prototype.filter() 
+//lenghtMasseges(dontReadArray, dontReadMassegeEl)
+console.log()
  
 
 //render date in masseges
@@ -50,10 +50,20 @@ const timeFormatter = new Intl.DateTimeFormat(undefined, {
   minute: '2-digit'
 })
 
+sortMassegessssss(USERS)
+function sortMassegessssss(arr) {
+  const copyUser = JSON.parse(JSON.stringify(arr))
+  copyUser.sort((a, b) => b.seen > a.seen ? 1 : -1)
 
+
+  //copyUser.sort((a,b) => b.date > a.date ? 1 : -1)
+  renderChat(copyUser, chatListEl)
+
+  console.log(copyUser)
+}
 
 //render chat
-renderChat(USERS, chatListEl)
+
 
 function renderChat(dataArray, DOMelement) {
   dataArray.forEach(user => {
@@ -64,7 +74,7 @@ function renderChat(dataArray, DOMelement) {
 
 function createChat(data) {
   return `
-  <div class="chatItems mb-1" style="max-width: 100%">
+  <div class="chatItems mb-1 ${data.seen}"  style="max-width: 100%   ">
   <div class="row">
     <div class="col-1">
       <img  src="${data.avatar}" class="chatImg" width="1" height="1" loading="lazy" alt="logo">
@@ -72,7 +82,7 @@ function createChat(data) {
     <div class="col-2">
       <div class="phoneName">
         <h6 class="name">${data.name}</h6>
-        <a href="tel:" class="numberPhone">${data.phone}</a>
+        <a href="tel:" class="numberPhone">${data.phone} </a>
       </div>
     </div>
     <div class="col-6"> 
@@ -87,6 +97,10 @@ function createChat(data) {
   </div>
 </div>`
 }
+
+
+
+//релізувати покліку прочитання повідомлення
 
 
 
@@ -125,19 +139,35 @@ function getTimeStr(dateObj = new Date()) {
   }
   renderChat(USERS, massegeEl)
 }*/
- 
-function sortMasseges() {
-
- 
+ /*
+//sort masseges відсортувати масив тут і рендерити вже відортований через функцію renderChart()
+ function sortMasseges() {
+  let [key, type] = this.seen
+  if (type == 'ab') {
+    USERS.sort((a, b) => {
+      if (typeof a[key] === 'string') {
+        return a[key].localeCompare(b[key])
+      } else if (typeof a[key] === 'number' || typeof a[key] === 'boolean') {
+        return a[key] - b[key]
+      }
+    })
+  } else if (type == 'ba') {
+    USERS.sort((a, b) => {
+      if (typeof b[key] === 'string') {
+        return b[key].localeCompare(a[key])
+      } else if (typeof b[key] === 'number' || typeof b[key] === 'boolean') {
+        return b[key] - a[key]
+      }
+    })
+  }
+  renderChat(USERS, massegeEl)
 }
 
 
-USERS.sort((a,b)=> {
-  return  a.date - b.date
+let sortArrMas  = USERS.sort((a,b)=> {
+  return  b.data - a.data
 }) 
-renderChat(USERS, chatListEl)
-
-
+renderChat(sortArrMas, chatListEl)*/
 
 
 

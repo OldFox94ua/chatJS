@@ -45,6 +45,9 @@ a {
   box-shadow: 1px 2px #333;
   cursor: pointer;
 }
+.chatItems.true{
+  background-color: rgba(119, 101, 101, 0.322);
+}
 .chatImg {
   width: 50px;
   height: 50px;
@@ -64,3 +67,6 @@ a {
   transform: translateX(0);
 }
  
+
+
+
