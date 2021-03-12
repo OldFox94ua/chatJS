@@ -14,12 +14,8 @@ const massegeEl = document.getElementById('massage')
 const dontReadMassegeEl = document.getElementById('dontReadMassege')
 const refreshBtn = document.getElementById('refreshBtn')
 
-/*allMassege(allMassegs, massegeEl)
-function allMassege(obj, insert) {
-  numberOfMessages = 0
-  let numberOfMessages = Object.keys(obj).length
-  insert.insertAdjacentHTML(numberOfMessages)
-}*/
+
+
 
 
 //refresh button
@@ -37,10 +33,29 @@ lenghtMasseges(USERS, massegeEl)
 
 
 
-//dont read calc (можна юзати MAP)
+//dont read calc (можна юзати MAP) !!!!!!!!dont work return all block
+const countDontReadMas = (users) => {
+  return users.reduce((count, user) =>{
+    if(user.seen){
+      count++
+    }
+    return count;
+  }, 0);
+}
+
+/*function arrayDontReadMass(array) {
+  return array.reduce((array, newArray) => {
+    if(array.seen){
+      newArray.push()
+    }
+  }
+  ) 
+}
+console.log(arrayDontReadMass(USERS))
+*/
 //let dontReadArray = USERS['seen'].prototype.filter() 
 //lenghtMasseges(dontReadArray, dontReadMassegeEl)
-console.log()
+console.log(countDontReadMas)
  
 
 //render date in masseges
@@ -50,12 +65,17 @@ const timeFormatter = new Intl.DateTimeFormat(undefined, {
   minute: '2-digit'
 })
 
-sortMassegessssss(USERS)
-function sortMassegessssss(arr) {
+sortMasseges(USERS)
+function sortMasseges(arr) {
   const copyUser = JSON.parse(JSON.stringify(arr))
   copyUser.sort((a, b) => b.seen > a.seen ? 1 : -1)
-
-
+  let readArr = []
+  let dontReadArr = []
+    if (copyUser.seen == true){
+      readArr.push()
+    } else {
+      dontReadArr.push()
+    }
   //copyUser.sort((a,b) => b.date > a.date ? 1 : -1)
   renderChat(copyUser, chatListEl)
 
