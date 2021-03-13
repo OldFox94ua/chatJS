@@ -10,9 +10,39 @@
 let USERS = JSON.parse(DATA)
 const chatListEl = document.getElementById('chatList')
 const infoChatEl = document.getElementById('infoChat')
-const massegeEl = document.getElementById('massage')
-const dontReadMassegeEl = document.getElementById('dontReadMassege')
+const allCountEl = document.getElementById('allCount')
+const unreadCountEl = document.getElementById('unreadCount')
 const refreshBtn = document.getElementById('refreshBtn')
+const dateFormatter = new Intl.DateTimeFormat()
+const timeFormatter = new Intl.DateTimeFormat(undefined, {
+  hour: '2-digit',
+  minute: '2-digit'
+})
+
+
+renderChat(USERS, chatListEl)
+
+
+chatListEl.addEventListener('click', event => {
+  const messageEl = event.target.closest('.chatItems')
+  if (messageEl) {
+    const messageId = messageEl.dataset.id
+    console.log(messageId);
+
+    USERS.forEach((message, i, array) => {
+      if (message.id == messageId) {
+        if (message.seen) {
+          array.splice(i,1)
+        } else{
+          array[i].seen = true
+        }
+      }
+    })
+    renderChat(USERS, chatListEl)
+  }
+})
+
+
 
 
 
@@ -20,72 +50,19 @@ const refreshBtn = document.getElementById('refreshBtn')
 
 //refresh button
 refreshBtn.addEventListener('click', () => {
-  window.location.reload()
+  USERS = JSON.parse(DATA)
+  renderChat(USERS, chatListEl)
 })
-
-
-//all masseges calc
-function lenghtMasseges(mass, renderPlace){
-  let lenghtArrayMassegs = mass.length
-  renderPlace.insertAdjacentHTML('beforeEnd', lenghtArrayMassegs )
-}
-lenghtMasseges(USERS, massegeEl)
-
-
-
-//dont read calc (можна юзати MAP) !!!!!!!!dont work return all block
-const countDontReadMas = (users) => {
-  return users.reduce((count, user) =>{
-    if(user.seen){
-      count++
-    }
-    return count;
-  }, 0);
-}
-
-/*function arrayDontReadMass(array) {
-  return array.reduce((array, newArray) => {
-    if(array.seen){
-      newArray.push()
-    }
-  }
-  ) 
-}
-console.log(arrayDontReadMass(USERS))
-*/
-//let dontReadArray = USERS['seen'].prototype.filter() 
-//lenghtMasseges(dontReadArray, dontReadMassegeEl)
-console.log(countDontReadMas)
- 
-
-//render date in masseges
-const dateFormatter = new Intl.DateTimeFormat()
-const timeFormatter = new Intl.DateTimeFormat(undefined, {
-  hour: '2-digit',
-  minute: '2-digit'
-})
-
-sortMasseges(USERS)
-function sortMasseges(arr) {
-  const copyUser = JSON.parse(JSON.stringify(arr))
-  copyUser.sort((a, b) => b.seen > a.seen ? 1 : -1)
-  let readArr = []
-  let dontReadArr = []
-    if (copyUser.seen == true){
-      readArr.push()
-    } else {
-      dontReadArr.push()
-    }
-  //copyUser.sort((a,b) => b.date > a.date ? 1 : -1)
-  renderChat(copyUser, chatListEl)
-
-  console.log(copyUser)
-}
 
 //render chat
 
-
 function renderChat(dataArray, DOMelement) {
+  allCountEl.textContent = dataArray.length
+  unreadCountEl.textContent = dataArray.filter(message => !message.seen).length
+
+  dataArray.sort((a, b) => a.seen - b.seen || b.date - a.date)
+
+  DOMelement.innerHTML = ''
   dataArray.forEach(user => {
     let html = createChat(user)
     DOMelement.insertAdjacentHTML('beforeEnd', html)
@@ -94,15 +71,15 @@ function renderChat(dataArray, DOMelement) {
 
 function createChat(data) {
   return `
-  <div class="chatItems mb-1 ${data.seen}"  style="max-width: 100%   ">
+  <div class="chatItems mb-1 ${data.seen ? 'seen' : 'unseen'}" data-id="${data.id}">
   <div class="row">
     <div class="col-1">
-      <img  src="${data.avatar}" class="chatImg" width="1" height="1" loading="lazy" alt="logo">
+      <img src="${data.avatar}" class="chatImg" width="1" height="1" loading="lazy" alt="${data.name}">
     </div>
     <div class="col-2">
       <div class="phoneName">
         <h6 class="name">${data.name}</h6>
-        <a href="tel:" class="numberPhone">${data.phone} </a>
+        <a href="tel:${data.phone}" class="numberPhone">${data.phone} </a>
       </div>
     </div>
     <div class="col-6"> 
@@ -194,28 +171,29 @@ renderChat(sortArrMas, chatListEl)*/
 
 
 //animation scroll
-const boxes = document.querySelectorAll('.chatItems')
+// const boxes = document.querySelectorAll('.chatItems')
 
 
-window.addEventListener('scroll', checkBoxes)
+// window.addEventListener('scroll', checkBoxes)
 
-checkBoxes()
+// checkBoxes()
 
-function checkBoxes() {
-    const triggerBottom = window.innerHeight / 5 * 4
+// function checkBoxes() {
+//     const triggerBottom = window.innerHeight / 5 * 4
 
-    boxes.forEach(box => {
-        const boxTop = box.getBoundingClientRect().top
+//     boxes.forEach(box => {
+//         const boxTop = box.getBoundingClientRect().top
 
-        if(boxTop < triggerBottom) {
-            box.classList.add('show')
-        } else {
-            box.classList.remove('show')
-        }
-    })
-}
+//         if(boxTop < triggerBottom) {
+//             box.classList.add('show')
+//         } else {
+//             box.classList.remove('show')
+//         }
+//     })
+// }
 
 
- 
+ // console.log(arr.filter(message => !message.seen));
+//   // console.log(arr.map(message => message.seen ? 'прочитано' : null).filter(read => read));
 
 
